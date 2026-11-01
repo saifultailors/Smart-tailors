@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="স্মার্ট টেইলার্স — অর্ডার, ডেলিভারি, হিসাব ও ব্যাকআপ এক অ্যাপে। দর্জি দোকানের জন্য সহজ ম্যানেজমেন্ট অ্যাপ।">
+    <title>Smart Tailors - স্মার্ট টেইলার্স ম্যানেজমেন্ট অ্যাপ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6D071A;
+            --primary-dark: #4d0512;
+            --secondary-color: #f7f7f7;
+            --text-color: #333;
+            --muted-color: #6b6b6b;
+            --accent-color: #007bff;
+            --success-color: #28a745;
+            --paper: #fffdf8;
+            --line: #e6dfd3;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Hind Siliguri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+        }
+
+        a { color: inherit; }
+
+        :focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 3px;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: 2px solid var(--primary-color);
+            transition: background-color .2s;
+        }
+
+        .btn:hover { background-color: var(--primary-dark); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-small { padding: 0.45rem 1.1rem; font-size: 0.95rem; color: #fff !important; }
+
+        /* Hero */
+        .hero {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 4.5rem 0;
+        }
+
+        .hero .container {
+            text-align: center;
+            overflow: visible;
+        }
+
+.hero h1 {
+            font-size: 2.6rem;
+            line-height: 1.3;
+            margin: 0 0 1rem;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 34em;
+            margin: 0 auto 2rem;
+            opacity: .92;
+        }
+
+        .hero .btn {
+            background: #fff;
+            color: var(--primary-color);
+            border-color: #fff;
+        }
+
+        .hero .btn:hover { background: #f0e6e8; }
+
+        .hero .btn-outline {
+            background: transparent;
+            color: #fff;
+            border-color: rgba(255,255,255,.7);
+        }
+
+        .hero .btn-outline:hover { background: rgba(255,255,255,.12); }
+
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+        /* Sections */
+        section { padding: 4.5rem 0; }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin: 0 0 .5rem;
+        }
+
+        .section-sub {
+            color: var(--muted-color);
+            margin: 0 0 2.5rem;
+            max-width: 38em;
+        }
+
+        .features { background: #fff; }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0 3rem;
+        }
+
+        .feature {
+            padding: 1.5rem 0;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .feature h3 {
+            margin: 0 0 .4rem;
+            font-size: 1.3rem;
+        }
+
+        .feature p { margin: 0; color: var(--muted-color); }
+
+        /* Screenshots */
+        .shots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .shot {
+            margin: 0;
+            text-align: center;
+        }
+
+        .shot-frame {
+            aspect-ratio: 9 / 19;
+            border: 6px solid #1f1f1f;
+            border-radius: 22px;
+            background: #ece7e8;
+            box-shadow: 0 14px 30px rgba(0,0,0,.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted-color);
+            font-size: .95rem;
+            overflow: hidden;
+        }
+
+        .shot-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .shot figcaption {
+            margin-top: .8rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* Download */
+        .download {
+            background: var(--primary-color);
+            color: #fff;
+            text-align: center;
+        }
+
+        .download h2 { font-size: 2rem; margin: 0 0 .5rem; }
+        .download p { margin: 0 auto 2rem; max-width: 32em; opacity: .92; }
+
+        .download .btn {
+            background: #fff;
+            color: var(--primary-color);
+            border-color: #fff;
+            font-size: 1.2rem;
+            padding: 1rem 2.4rem;
+        }
+
+        .download .btn:hover { background: #f0e6e8; }
+
+        /* Footer */
+        footer {
+            background: #1c1c1c;
+            color: #cfcfcf;
+            padding: 2.5rem 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        footer h4 { color: #fff; margin: 0 0 .5rem; font-size: 1.1rem; }
+        footer p { margin: 0; }
+        footer a { text-decoration: none; }
+        footer a:hover { color: #fff; text-decoration: underline; }
+
+        .copyright {
+            text-align: center;
+            margin: 2rem 0 0;
+            padding-top: 1.2rem;
+            border-top: 1px solid #333;
+            font-size: .9rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 860px) {
+            .container { width: 100%; }
+            .hero h1 { font-size: 2.1rem; }
+            .feature-list { grid-template-columns: 1fr; }
+            .shots { grid-template-columns: repeat(2, 1fr); }
+            .nav-links li:not(:last-child) { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .shots { gap: 1rem; }
+            .section-title { font-size: 1.7rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .btn { transition: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">স্মার্ট টেইলার্স</a>
+                <ul class="nav-links">
+                    <li><a href="#features">ফিচার</a></li>
+                    <li><a href="#screenshots">স্ক্রিনশট</a></li>
+                    <li><a href="#download" class="btn btn-small">ডাউনলোড</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>দর্জি দোকানের অর্ডার, ডেলিভারি আর হিসাব — এক অ্যাপেই</h1>
+                <p>খাতা আর কাগজের স্লিপের ঝামেলা শেষ। স্মার্ট টেইলার্সে প্রতিটি অর্ডার ট্র্যাক করুন, কাস্টমারকে নিজে থেকেই জানান, আর দিনের আয়-ব্যয় এক জায়গায় দেখুন।</p>
+                <div class="hero-actions">
+                    <a href="#download" class="btn">অ্যাপ ডাউনলোড করুন</a>
+                    <a href="#features" class="btn btn-outline">ফিচার দেখুন</a>
+                </div>
+
+                <div id="screenshots">
+                    <div class="shots">
+                            <figure class="shot">
+                                <div class="shot-frame">
+                                    <!-- <img src="screenshots/1.jpg" alt="অর্ডার তালিকা"> -->
+                                    স্ক্রিনশট ১
+                                </div>
+                                <figcaption>অর্ডার তালিকা</figcaption>
+                            </figure>
+                            <figure class="shot">
+                                <div class="shot-frame">
+                                    <!-- <img src="screenshots/2.jpg" alt="নতুন অর্ডার"> -->
+                                    স্ক্রিনশট ২
+                                </div>
+                                <figcaption>নতুন অর্ডার</figcaption>
+                            </figure>
+                            <figure class="shot">
+                                <div class="shot-frame">
+                                    <!-- <img src="screenshots/3.jpg" alt="আয়-ব্যয়ের হিসাব"> -->
+                                    স্ক্রিনশট ৩
+                                </div>
+                                <figcaption>আয়-ব্যয়ের হিসাব</figcaption>
+                            </figure>
+                            <figure class="shot">
+                                <div class="shot-frame">
+                                    <!-- <img src="screenshots/4.jpg" alt="ব্যাকআপ"> -->
+                                    স্ক্রিনশট ৪
+                                </div>
+                                <figcaption>গুগল ড্রাইভ ব্যাকআপ</figcaption>
+                            </figure>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">দোকান চালানোর সব কাজ এক জায়গায়</h2>
+                <p class="section-sub">দর্জি দোকানের প্রতিদিনের কাজগুলো সহজ করতে যা যা দরকার, সবই আছে।</p>
+
+                <div class="feature-list">
+                    <div class="feature">
+                        <h3>অর্ডার ট্র্যাকিং</h3>
+                        <p>কোন অর্ডার সেলাই চলছে, কোনটি তৈরি, কোনটি ডেলিভারির অপেক্ষায় — এক নজরে দেখুন। ডেলিভারির তারিখ কখনো ভুলবেন না।</p>
+                    </div>
+                    <div class="feature">
+                        <h3>কাস্টমারকে স্বয়ংক্রিয় নোটিফিকেশন</h3>
+                        <p>পোশাক তৈরি হলেই কাস্টমারের কাছে মেসেজ চলে যায়। ফোন করে বারবার জানাতে হবে না।</p>
+                    </div>
+                    <div class="feature">
+                        <h3>আয়-ব্যয়ের হিসাব</h3>
+                        <p>কাস্টমারের বাকি, জমা, কাপড়ের খরচ আর কারিগরের মজুরি লিখে রাখুন। দিন ও মাসের হিসাব নিজে থেকেই মিলে যায়।</p>
+                    </div>
+                    <div class="feature">
+                        <h3>গুগল ড্রাইভ ব্যাকআপ</h3>
+                        <p>আপনার সব তথ্য গুগল ড্রাইভে নিরাপদে জমা থাকে। ফোন হারালেও বা বদলালেও ডেটা ফিরে পাবেন।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="download" id="download">
+            <div class="container">
+                <h2>আজই স্মার্ট টেইলার্স ব্যবহার শুরু করুন</h2>
+                <p>অ্যাপটি ডাউনলোড করে আপনার দোকানের অর্ডার ও হিসাব গুছিয়ে নিন।</p>
+                <!-- href এ আপনার অ্যাপের ডাউনলোড লিংক বসান -->
+                <a href="#" class="btn">অ্যাপ ডাউনলোড করুন (APK)</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <h4>স্মার্ট টেইলার্স</h4>
+                    <p>দর্জি দোকানের জন্য ম্যানেজমেন্ট অ্যাপ।</p>
+                </div>
+                <div>
+                    <h4>যোগাযোগ</h4>
+                    <p>মোবাইল: <a href="tel:+8801XXXXXXXXX">০১XXXXXXXXX</a></p>
+                    <p>ইমেইল: <a href="mailto:info@example.com">info@example.com</a></p>
+                </div>
+                <div>
+                    <h4>লিংক</h4>
+                    <p><a href="#features">ফিচার</a></p>
+                    <p><a href="#screenshots">স্ক্রিনশট</a></p>
+                    <p><a href="#download">ডাউনলোড</a></p>
+                </div>
+            </div>
+            <p class="copyright">&copy; ২০২৬ স্মার্ট টেইলার্স। সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
+    </footer>
+
+</body>
+</html>
